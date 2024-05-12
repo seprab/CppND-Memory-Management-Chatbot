@@ -46,6 +46,8 @@ ChatBot::ChatBot(const ChatBot &source)
     _currentNode = source._currentNode;
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;   
+
+    _chatLogic->SetChatbotHandle(this); 
 }
 
 // Overloaded Copy assignment operator
@@ -69,6 +71,7 @@ ChatBot& ChatBot::operator=(const ChatBot &source)
     _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
 
+    _chatLogic->SetChatbotHandle(this); 
     return *this;
 }
 
@@ -84,10 +87,12 @@ ChatBot::ChatBot(ChatBot &&source)
     _chatLogic = source._chatLogic;
 
     // set source data handles to null
-    source._image = nullptr;
+    source._image = NULL;
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
+
+    _chatLogic->SetChatbotHandle(this); 
 }
 
 // Overloaded Move assignment operator
@@ -112,10 +117,12 @@ ChatBot& ChatBot::operator=(ChatBot &&source)
     _chatLogic = source._chatLogic;
 
     // set source data handles to null
-    source._image = nullptr;
+    source._image = NULL;
     source._currentNode = nullptr;
     source._rootNode = nullptr;
     source._chatLogic = nullptr;
+
+    _chatLogic->SetChatbotHandle(this); 
 
     return *this;
 }
